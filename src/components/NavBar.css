@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #1e1e1e;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ff4c29;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.navbar-links a {
+  font-size: 1rem;
+}
+
+.cart-widget {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cart-widget:hover {
+  transform: scale(1.2);
+}
