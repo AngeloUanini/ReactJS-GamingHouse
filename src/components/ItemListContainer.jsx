@@ -1,19 +1,32 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Item from "./Item";
+import { getData, getProductsByCategory } from "../data/mockAPIService";
 
-export default function ItemListContainer( props ) {
-    return (
-        <section>
-            <h2 className="titulo">{ props.greeting }</h2>
-            <Item
-            title="Monitor 144hz"
-            img="https://www.lg.com/content/dam/channel/wcms/pe/images/monitores/27gr93u-b_awf_espr_pe_c/gallery/dz-1.jpg/jcr:content/renditions/thum-1600x1062.jpeg"
-            price ="350.000" />
+export default function ItemListContainer({ greeting }) {
+  const { categoriaId } = useParams();
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-            <Item
-            title="placa de video AMD Radeon RX7600"
-            img="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_40842_Placa_de_Video_XFX_Radeon_RX_7600_8GB_GDDR6_SPEEDSTER_SWIFT_210_83cf4d2a-grn.jpg"
-            price="400.000" />
-            
-        </section>
-    )
+  useEffect(() => {
+    const fetchData = categoriaId ? getProductsByCategory(categoriaId) : getData();
+
+    fetchData
+      .then((data) => setItems(data))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [categoriaId]);
+
+  if (loading) return <p>Cargando productos...</p>;
+
+  return (
+    <section>
+      <h2 className="titulo">{greeting}</h2>
+      <div className="contenedor-productos">
+        {items.map((prod) => (
+          <Item key={prod.id} {...prod} />
+        ))}
+      </div>
+    </section>
+  );
 }

@@ -1,15 +1,15 @@
+import { Link } from "react-router-dom";
 import "./Item.css";
 
-export default function Item(props) {
-    const texto = `Producto: ${props.title}`
-
-    return <div className="producto">
-        <img width="150" 
-        src={props.img} alt="monitor"
-        />
-
-        <h4>{ props.title }</h4>
-        <p>Precio: ${ props.price }</p>
-        <button>Ver Mas</button>
+export default function Item({ id, title, img, price }) {
+  return (
+    <div className="producto">
+      <img width="150" src={img} alt={title} />
+      <h4>{title}</h4>
+      <p>Precio: ${price}</p>
+      <Link to={`/item/${id}`}>
+        <button>Ver más</button>
+      </Link>
     </div>
+  );
 }

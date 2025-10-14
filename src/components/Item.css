@@ -1,7 +1,60 @@
+/* Tarjetas de producto */
 .producto {
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  padding: 15px;
+  background-color: #222;
+  border-radius: 12px;
+  padding: 20px;
   text-align: center;
   width: 250px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.producto h4 {
+  margin: 10px 0 5px;
+  font-size: 1.1rem;
+}
+
+.producto p {
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #ff4c29;
+}
+
+.producto button {
+  background-color: #ff4c29;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.producto button:hover {
+  background-color: #ff693d;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor general de productos */
+.contenedor-productos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 30px;
 }
