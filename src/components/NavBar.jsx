@@ -13,7 +13,10 @@ export default function NavBar() {
         <Link to="/categoria/gabinetes">Gabinetes</Link>
       </ul>
 
-      <CartWidget />
+      <Link to="/cart">
+        <CartWidget />
+      </Link>
+
     </nav>
   );
 }

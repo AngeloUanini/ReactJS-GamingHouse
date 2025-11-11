@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../data/mockAPIService";
-import "./ItemDetailContainer.css";
-
+import ItemDetail from "./ItemDetail";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
@@ -15,18 +14,8 @@ export default function ItemDetailContainer() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <p>Cargando producto...</p>;
-  if (!producto) return <p>Producto no encontrado</p>;
+  if (loading) return <p style={{ textAlign: "center" }}>Cargando producto...</p>;
+  if (!producto) return <p style={{ textAlign: "center" }}>Producto no encontrado</p>;
 
-  return (
-    <div className="item-detail">
-      <img src={producto.img} alt={producto.title} width="300" />
-      <div>
-        <h2>{producto.title}</h2>
-        <p>{producto.description}</p>
-        <p>Precio: ${producto.price}</p>
-        <p>Stock disponible: {producto.stock}</p>
-      </div>
-    </div>
-  );
+  return <ItemDetail producto={producto} />;
 }
