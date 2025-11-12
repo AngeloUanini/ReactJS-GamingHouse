@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  justify-content: center;
 }
 
 .contador button {
@@ -22,7 +23,15 @@
   height: 35px;
   cursor: pointer;
   transition: 0.3s;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  line-height: 1;
+  font-weight: bold;
 }
+
 
 .contador button:hover {
   background-color: #ff693d;

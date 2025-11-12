@@ -1,5 +1,5 @@
 import { useCart } from "../context/CartContext";
-import "./CartWidget.css"; // opcional: estilos para la burbuja de cantidad
+import "./CartWidget.css"; 
 
 export default function CartWidget(){
   const { totalQuantity } = useCart();

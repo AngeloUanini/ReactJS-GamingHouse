@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Cart() {
   const { cart, totalPrice, clearCart } = useCart();
-
+  
   if (cart.length === 0) {
     return (
       <section className="cart-empty">

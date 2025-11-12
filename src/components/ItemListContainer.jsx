@@ -1,32 +1,38 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Item from "./Item";
-import { getData, getProductsByCategory } from "../data/mockAPIService";
+import ItemList from "./ItemList";
+import { getAllProducts, getProductsByCategory } from "../firebase/productService";
 
 export default function ItemListContainer({ greeting }) {
-  const { categoriaId } = useParams();
-  const [items, setItems] = useState([]);
+  const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { categoriaId } = useParams();
 
   useEffect(() => {
-    const fetchData = categoriaId ? getProductsByCategory(categoriaId) : getData();
+    setLoading(true);
 
-    fetchData
-      .then((data) => setItems(data))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const data = categoriaId
+          ? await getProductsByCategory(categoriaId)
+          : await getAllProducts();
+        setProductos(data);
+      } catch (error) {
+        console.error("Error cargando productos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [categoriaId]);
 
-  if (loading) return <p>Cargando productos...</p>;
+  if (loading) return <p style={{ textAlign: "center" }}>🌀 Cargando productos...</p>;
 
   return (
-    <section>
-      <h2 className="titulo">{greeting}</h2>
-      <div className="contenedor-productos">
-        {items.map((prod) => (
-          <Item key={prod.id} {...prod} />
-        ))}
-      </div>
-    </section>
+    <div>
+      <h2 style={{ textAlign: "center", color: "white" }}>{greeting}</h2>
+      <ItemList productos={productos} />
+    </div>
   );
 }
